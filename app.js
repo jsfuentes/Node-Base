@@ -1,13 +1,16 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const 
+  createError = require('http-errors'),
+  cookieParser = require('cookie-parser'),
+  debug = require('debug')('app'),
+  express = require('express'),
+  logger = require('morgan'),
+  path = require('path');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const 
+  indexRouter = require('./routes/index'),
+  usersRouter = require('./routes/users');
 
-var app = express();
+let app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -39,15 +42,17 @@ app.use(function(err, req, res, next) {
 });
 
 //Import the mongoose module
-var mongoose = require('mongoose');
+let mongoose = require('mongoose');
 
 //Set up default mongoose connection
-var mongoDB = 'mongodb://admin:admin@ds227199.mlab.com:27199/tixcoin';
-mongoose.connect(mongoDB);
+let mongoDB = 'mongodb://admin:admin@ds227199.mlab.com:27199/tixcoin';
+debug("Connecting to %o", mongoDB);
+
+mongoose.connect(mongoDB, { useNewUrlParser: true });
 // Get Mongoose to use the global promise library
 mongoose.Promise = global.Promise;
 //Get the default connection
-var db = mongoose.connection;
+let db = mongoose.connection;
 
 //Bind connection to error event (to get notification of connection errors)
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
