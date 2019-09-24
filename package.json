@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "dev": "export NODE_ENV=production && node ./bin/www",
+    "start": "export NODE_ENV=development && export DEBUG=app:* && nodemon ./bin/www"
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",

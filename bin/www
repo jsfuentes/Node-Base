@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 
-const 
+const
   app = require('../app'),
   debug = require('debug')('bin:www'),
   http = require('http');
@@ -59,9 +59,9 @@ function onError(error) {
     throw error;
   }
 
-  let bind = typeof port === 'string'
-    ? 'Pipe ' + port
-    : 'Port ' + port;
+  let bind = typeof port === 'string' ?
+    'Pipe ' + port :
+    'Port ' + port;
 
   // handle specific listen errors with friendly messages
   switch (error.code) {
@@ -83,8 +83,11 @@ function onError(error) {
  */
 function onListening() {
   let addr = server.address();
-  let bind = typeof addr === 'string'
-    ? 'pipe ' + addr
-    : 'port ' + addr.port;
-  console.log('Listening on ' + bind);
+  if (process.env.NODE_ENV === "development" && typeof addr !== 'string') {
+    console.log(`Listening at http://localhost:${addr.port}`);
+  }
+  let bind = typeof addr === 'string' ?
+    'pipe ' + addr :
+    'port ' + addr.port;
+  debug('Listening on ' + bind);
 }
