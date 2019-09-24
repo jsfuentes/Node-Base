@@ -7,13 +7,14 @@
     "start": "export NODE_ENV=development && export DEBUG=app:* && nodemon ./bin/www"
   },
   "dependencies": {
+    "config": "^3.2.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
-    "ejs": "~2.5.7",
     "express": "~4.16.0",
     "http-errors": "~1.6.2",
-    "mongoose": "^5.4.13",
+    "knex": "^0.19.4",
     "morgan": "^1.9.1",
-    "nodemon": "^1.18.10"
+    "nodemon": "^1.18.10",
+    "pg": "^7.12.1"
   }
 }

@@ -1,0 +1,10 @@
+{
+    "name": "Main Server",
+    "port": 3000,
+    "db": {
+        "user": < ERR > ,
+        "password": < ERR > ,
+        "host": < ERR > ,
+        "database": < ERR >
+    }
+}

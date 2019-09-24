@@ -3,21 +3,11 @@ const createError = require("http-errors"),
   debug = require("debug")("app"),
   express = require("express"),
   logger = require("morgan"),
-  path = require("path"),
-  mongoose = require("mongoose");
+  path = require("path");
 
 const indexRouter = require("./routes/index"),
   usersRouter = require("./routes/users");
 
-//Connect to DB
-const mongoDB = "mongodb://admin:admin@ds227199.mlab.com:27199/tixcoin";
-debug("Connecting to %o", mongoDB);
-mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
-mongoose.Promise = global.Promise;
-let db = mongoose.connection;
-db.on("error", console.error.bind(console, "MongoDB connection error:"));
-
-//SETUP APP
 let app = express();
 
 app.use(logger("dev"));

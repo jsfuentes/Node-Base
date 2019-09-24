@@ -4,6 +4,8 @@ The base of a nodejs project with express, ejs, and nodemon
 
 ## Running the App
 
+To access database, need to setup pg connection in `config/conf.js`.
+
 - `npm install`
 - `npm run start`
 
