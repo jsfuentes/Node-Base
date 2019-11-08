@@ -1,0 +1,5 @@
+{
+  "name": "Main Server",
+  "port": 3000,
+  "db_uri": < FILL IN >
+}

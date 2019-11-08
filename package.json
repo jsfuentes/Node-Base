@@ -3,10 +3,11 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "export NODE_ENV=production && node ./bin/www",
-    "start": "export NODE_ENV=development && export DEBUG=app:* && nodemon ./bin/www"
+    "start": "export NODE_ENV=production && node ./bin/www",
+    "dev": "export NODE_ENV=development && export DEBUG=app* && nodemon ./bin/www"
   },
   "dependencies": {
+    "config": "^3.2.4",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "ejs": "~2.5.7",

@@ -1,12 +1,13 @@
 const express = require("express");
-
-const Votes = require("../model.js");
+const debug = require("debug")("app:routes:index");
 
 let router = express.Router();
 
 /* GET home page. */
-router.get("/", function(req, res, next) {
+router.get("/", getIndex);
+
+function getIndex(req, res) {
   res.send("<h1>Welcome to Express</h1>");
-});
+}
 
 module.exports = router;

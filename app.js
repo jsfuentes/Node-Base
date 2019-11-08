@@ -1,20 +1,22 @@
-const createError = require("http-errors"),
-  cookieParser = require("cookie-parser"),
-  debug = require("debug")("app"),
-  express = require("express"),
-  logger = require("morgan"),
-  path = require("path"),
-  mongoose = require("mongoose");
+const createError = require("http-errors");
+const cookieParser = require("cookie-parser");
+const debug = require("debug")("app");
+const conf = require("config");
+const mongoose = require("mongoose");
+const express = require("express");
+const logger = require("morgan");
+const path = require("path");
 
-const indexRouter = require("./routes/index"),
-  usersRouter = require("./routes/users");
+const indexRouter = require("./routes/index");
+const usersRouter = require("./routes/users");
 
-//Connect to DB
-const mongoDB = "mongodb://admin:admin@ds227199.mlab.com:27199/tixcoin";
-debug("Connecting to %o", mongoDB);
+//SETUP DB
+const mongoDB = conf.get("db_uri");
+debug(`Connecting to ${mongoDB}`);
+
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.Promise = global.Promise;
-let db = mongoose.connection;
+const db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
 //SETUP APP
@@ -35,7 +37,7 @@ app.use(function(req, res, next) {
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function(err, req, res) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};
