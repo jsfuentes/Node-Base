@@ -8,7 +8,7 @@ const logger = require("morgan");
 const path = require("path");
 
 const indexRouter = require("./routes/index");
-const usersRouter = require("./routes/users");
+const usersRouter = require("./routes/user");
 
 ////////////////////
 // DB Setup

@@ -4,10 +4,15 @@ const debug = require("debug")("app:routes:index");
 let router = express.Router();
 
 /* GET home page. */
-router.get("/", getIndex);
+router.get("/", getHeartBeat);
+router.get("/test", getHeartBeat);
 
-function getIndex(req, res) {
-  res.send("<h1>Welcome to Express</h1>");
+function getHeartBeat(req, res) {
+  if (process.env.NODE_ENV === "PRODUCTION") {
+    res.send("OK");
+  } else {
+    res.send("Hi, I'm Node-Base");
+  }
 }
 
 module.exports = router;
