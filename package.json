@@ -1,6 +1,6 @@
 {
-  "name": "tixcoin",
-  "version": "0.0.0",
+  "name": "Node-Base",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "start": "export NODE_ENV=production && node ./bin/www",
@@ -10,11 +10,11 @@
     "config": "^3.2.4",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
-    "ejs": "~2.5.7",
     "express": "~4.16.0",
-    "http-errors": "~1.6.2",
     "mongoose": "^5.7.5",
-    "morgan": "^1.9.1",
-    "nodemon": "^1.18.10"
+    "morgan": "^1.9.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
   }
 }

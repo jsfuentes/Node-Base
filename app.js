@@ -10,7 +10,11 @@ const path = require("path");
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
 
-//SETUP DB
+////////////////////
+// DB Setup
+////////////////////
+if (conf.get("db_uri") == "")
+  throw new Error("Must fill in db_uri in config/default.json");
 const mongoDB = conf.get("db_uri");
 debug(`Connecting to ${mongoDB}`);
 
@@ -19,7 +23,9 @@ mongoose.Promise = global.Promise;
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
-//SETUP APP
+////////////////////
+// Server Setup
+////////////////////
 let app = express();
 
 app.use(logger("dev"));
@@ -42,9 +48,9 @@ app.use(function(err, req, res) {
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};
 
-  // render the error page
+  // send error
   res.status(err.status || 500);
-  res.send("error");
+  res.send("Server Error");
 });
 
 module.exports = app;
