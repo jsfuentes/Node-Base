@@ -53,7 +53,13 @@ app.use(cookieParser());
 //Client Pages
 app.use("/", indexRouter);
 //Uncomment Below to get a react build folder to work
-// app.use("/static", express.static(path.join(__dirname + "/build/static")));
+/* 
+app.use("/static", express.static(path.join(__dirname + "/build/static")));
+
+app.get("/*", function(req, res) {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
+});
+*/
 
 //APIs
 app.use("/api/user", userRouter);
