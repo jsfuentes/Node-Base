@@ -1,39 +1,29 @@
 #!/usr/bin/env node
 
-/**
- * Module dependencies.
- */
+// Module dependencies.
 
-const debug = require("debug")("bin:www");
+const debug = require("debug")("app:bin:www");
 const http = require("http");
 const conf = require("config");
 
 const app = require("../app");
 
-/**
- * Get port from environment and store in Express.
- */
+//Get port from environment and store in Express.
 
-const port = normalizePort(conf.get("port") || "3000");
+const port = normalizePort(process.env.PORT || conf.get("port"));
 app.set("port", port);
 
-/**
- * Create HTTP server.
- */
+//Create HTTP server.
 
 let server = http.createServer(app);
 
-/**
- * Listen on provided port, on all network interfaces.
- */
+//Listen on provided port, on all network interfaces.
 
 server.listen(port);
 server.on("error", onError);
 server.on("listening", onListening);
 
-/**
- * Normalize a port into a number, string, or false.
- */
+//Normalize a port into a number, string, or false.
 
 function normalizePort(val) {
   let port = parseInt(val, 10);
@@ -51,9 +41,7 @@ function normalizePort(val) {
   return false;
 }
 
-/**
- * Event listener for HTTP server "error" event.
- */
+//Event listener for HTTP server "error" event.
 
 function onError(error) {
   if (error.syscall !== "listen") {
@@ -77,9 +65,7 @@ function onError(error) {
   }
 }
 
-/**
- * Event listener for HTTP server "listening" event.
- */
+//Event listener for HTTP server "listening" event.
 function onListening() {
   let addr = server.address();
   if (process.env.NODE_ENV === "development" && typeof addr !== "string") {

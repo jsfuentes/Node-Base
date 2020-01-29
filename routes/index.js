@@ -9,7 +9,7 @@ router.get("/test", getHeartBeat);
 
 function getHeartBeat(req, res) {
   if (process.env.NODE_ENV === "PRODUCTION") {
-    res.send("OK");
+    res.sendStatus(200);
   } else {
     res.send("Hi, I'm Node-Base");
   }

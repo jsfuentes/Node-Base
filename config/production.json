@@ -1,11 +1,10 @@
 {
   "name": "Main Server",
-  "port": 3001,
-  "db_uri": "",
+  "port": 80,
   "GRANT_CONFIG": {
     "defaults": {
-      "protocol": "http",
-      "host": "localhost:3001",
+      "protocol": "https",
+      "host": "www.example.com",
       "transport": "session",
       "state": true
     },

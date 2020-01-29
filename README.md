@@ -1,12 +1,13 @@
 # Base Node
 
-The base of a Node project with express and supporting a mongoose MongoDB database. It also comes with the following:
+The base of a Node project with express, express-session, and a mongoose MongoDB database. It also comes with the following:
 
 - mongoose model in `models`
 - index route on `localhost:3000/`
 - user login and more (delete by just deleting `routes/user` and `models/User.js`)
 - async Handler to simplify express async function error handling
--
+- grant setup for easy Google and other 3rd party authentication
+- .ebextensions configs https setup when deployed to elastic beanstalk
 
 ## Running the App
 
@@ -19,3 +20,5 @@ The base of a Node project with express and supporting a mongoose MongoDB databa
 - It restarts on changes to anything (nodemon)
 - `export DEBUG=app` to see app debug statements (debug)
 - Uses `config/default.json` to store server configuration (config)
+- Store session data in cookies backed with mongo (express-session connect-mongo)
+- Log route access (morgan)

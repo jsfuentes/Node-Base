@@ -6,9 +6,12 @@ const mongoose = require("mongoose");
 const express = require("express");
 const logger = require("morgan");
 const path = require("path");
+const session = require("express-session");
+const MongoStore = require("connect-mongo")(session);
+const grant = require("grant-express");
 
 const indexRouter = require("./routes/index");
-const usersRouter = require("./routes/user");
+const userRouter = require("./routes/user");
 
 ////////////////////
 // DB Setup
@@ -28,22 +31,41 @@ db.on("error", console.error.bind(console, "MongoDB connection error:"));
 ////////////////////
 let app = express();
 
+app.use(
+  session({
+    name: "j_f",
+    secret: "did you know more people die from obesity than hunger?",
+    saveUninitialized: true,
+    secure: false,
+    resave: true,
+    store: new MongoStore({ mongooseConnection: mongoose.connection })
+  })
+);
+
+//Middleware
+// Uncomment below line and fill in grant in config files to use this better passport
+// app.use(grant(conf.get("GRANT_CONFIG")));
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, "public")));
 
+//Client Pages
 app.use("/", indexRouter);
-app.use("/users", usersRouter);
+//Uncomment Below to get a react build folder to work
+// app.use("/static", express.static(path.join(__dirname + "/build/static")));
+
+//APIs
+app.use("/api/user", userRouter);
+app.use("/api", (req, res, next) => next(createError(404)));
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res) {
+app.use((err, req, res) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};

@@ -9,13 +9,18 @@ let router = express.Router();
 router.get("/", asyncH(getUser));
 router.get("/add", asyncH(addUser));
 
+//Returns all users rn
 async function getUser(req, res) {
   const f = await User.find().exec();
   debug(f, typeof f);
   res.json(f);
 }
 
-const sampleTest = { test: true, name: "Jorge Fuentes", date: Date() };
+const sampleTest = {
+  test: true,
+  name: "Jorge Fuentes",
+  email: "email@testing.com"
+};
 
 //For easy testing is get
 async function addUser(req, res) {
