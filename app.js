@@ -50,8 +50,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+//APIs
+app.use("/api/user", userRouter);
+//catch bad api calls
+app.use("/api", (req, res, next) => next(createError(404)));
+
 //Client Pages
-app.use("/", indexRouter);
+app.use("/", indexRouter); //default basics
 //Uncomment Below to get a react build folder to work
 /* 
 app.use("/static", express.static(path.join(__dirname + "/build/static")));
@@ -61,17 +66,13 @@ app.get("/*", function(req, res) {
 });
 */
 
-//APIs
-app.use("/api/user", userRouter);
-app.use("/api", (req, res, next) => next(createError(404)));
-
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
   next(createError(404));
 });
 
 // error handler
-app.use((err, req, res) => {
+app.use((err, req, res, next) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};
