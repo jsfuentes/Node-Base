@@ -11,9 +11,9 @@ The base of a Node project with express, express-session, and a mongoose MongoDB
 
 ## Running the App
 
-- `npm install`
-- `npm run dev` for Dev Mode
-- `npm run start` for Prod Mode
+- `yarn`
+- `yarn dev` for Dev Mode
+- `yarn start` for Prod Mode
 
 ### Packages Used
 

@@ -13,7 +13,7 @@
     "debug": "~2.6.9",
     "express": "~4.16.0",
     "express-session": "^1.17.0",
-    "grant": "^4.7.0",
+    "grant-express": "^4.7.0",
     "mongoose": "^5.7.5",
     "morgan": "^1.9.1"
   },

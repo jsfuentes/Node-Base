@@ -499,7 +499,14 @@ graceful-fs@^4.1.11, graceful-fs@^4.1.2:
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.3.tgz#4a12ff1b60376ef09862c2093edd908328be8423"
   integrity sha512-a30VEBm4PEdx1dRB7MFK7BejejvCvBronbLjht+sHuGYj8PHs7M/5Z+rt5lw551vZ7yfTCj4Vuyy3mSJytDWRQ==
 
-grant@^4.7.0:
+grant-express@^4.7.0:
+  version "4.7.0"
+  resolved "https://registry.yarnpkg.com/grant-express/-/grant-express-4.7.0.tgz#5d435bd2f24e6a42b27aee148b94b3d6f12dbee1"
+  integrity sha512-feRNJLKDcn7xz/KGp/rSAXErp+sP6MALbCfZodKNFz7to+dMo+PbcgMZVPSdasPI/YqHNwnHPE0NRQDUsVciHQ==
+  dependencies:
+    grant "4.7.0"
+
+grant@4.7.0:
   version "4.7.0"
   resolved "https://registry.yarnpkg.com/grant/-/grant-4.7.0.tgz#ab879a38ced7860df668db6c66012aa02402f49b"
   integrity sha512-QGPjCYDrBnb/OIiTRxbK3TnNOE6Ycgfc/GcgPzI4vyNIr+b7yisEexYp7VM74zj6bxr+mDTzfGONRLzzsVPJIA==
