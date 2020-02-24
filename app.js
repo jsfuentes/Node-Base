@@ -21,7 +21,11 @@ if (conf.get("db_uri") == "")
 const mongoDB = conf.get("db_uri");
 debug(`Connecting to ${mongoDB}`);
 
-mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(mongoDB, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false
+});
 mongoose.Promise = global.Promise;
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
