@@ -63,7 +63,7 @@ app.use("/api", (req, res, next) => next(createError(404)));
 app.use("/", indexRouter); //default basics
 //Uncomment Below to get a react build folder to work
 /* 
-app.use("/static", express.static(path.join(__dirname + "/build/static")));
+app.use(express.static(path.join(__dirname + "/build")));
 
 app.get("/*", function(req, res) {
   res.sendFile(path.join(__dirname, "build", "index.html"));
