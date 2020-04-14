@@ -9,6 +9,7 @@ const path = require("path");
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 const grant = require("grant-express");
+const Sentry = require("@sentry/node");
 
 const indexRouter = require("./routes/index");
 const userRouter = require("./routes/user");
@@ -24,7 +25,7 @@ debug(`Connecting to ${mongoDB}`);
 mongoose.connect(mongoDB, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  useFindAndModify: false
+  useFindAndModify: false,
 });
 mongoose.Promise = global.Promise;
 const db = mongoose.connection;
@@ -35,14 +36,15 @@ db.on("error", console.error.bind(console, "MongoDB connection error:"));
 ////////////////////
 let app = express();
 
+app.use(Sentry.Handlers.requestHandler({ ip: true })); // Must be first middleware
 app.use(
   session({
     name: "j_f",
-    secret: "did you know more people die from obesity than hunger?",
+    secret: "the experimental prototype city of tomorrow",
     saveUninitialized: true,
     secure: false,
     resave: true,
-    store: new MongoStore({ mongooseConnection: mongoose.connection })
+    store: new MongoStore({ mongooseConnection: mongoose.connection }),
   })
 );
 
@@ -75,9 +77,18 @@ app.use((req, res, next) => {
   next(createError(404));
 });
 
-// error handler
+// Error Handlers
+app.use(
+  Sentry.Handlers.errorHandler({
+    shouldHandleError(err) {
+      return true; //by default only captures 500, but lets capture all errors
+    },
+  })
+); //must be first error handler and after all controllers
 app.use((err, req, res, next) => {
   // set locals, only providing error in development
+  console.error(err);
+
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};
 

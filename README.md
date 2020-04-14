@@ -7,7 +7,6 @@ The base of a Node project with express, express-session, and a mongoose MongoDB
 - user login and more (delete by just deleting `routes/user` and `models/User.js`)
 - async Handler to simplify express async function error handling
 - grant setup for easy Google and other 3rd party authentication
-- .ebextensions configs https setup when deployed to elastic beanstalk
 
 ## Running the App
 
