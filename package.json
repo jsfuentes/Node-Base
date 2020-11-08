@@ -7,15 +7,16 @@
     "dev": "export NODE_ENV=development && export DEBUG=app* && nodemon ./bin/www"
   },
   "dependencies": {
-    "@sentry/node": "^5.15.4",
-    "config": "^3.3.1",
+    "@sentry/node": "^5.27.3",
+    "axios": "^0.21.0",
+    "config": "^3.3.2",
     "connect-mongo": "^3.2.0",
     "cookie-parser": "^1.4.5",
-    "debug": "^4.1.1",
+    "debug": "^4.2.0",
     "express": "^4.17.1",
-    "express-session": "^1.17.0",
-    "grant-express": "^4.7.0",
-    "mongoose": "^5.9.9",
+    "express-session": "^1.17.1",
+    "grant-express": "^5.4.4",
+    "mongoose": "^5.10.13",
     "morgan": "^1.10.0"
   },
   "devDependencies": {
